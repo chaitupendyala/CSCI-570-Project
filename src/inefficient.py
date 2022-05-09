@@ -105,6 +105,6 @@ def call_inefficient_sequence_alignment( s1, s2, output_file ):
     wf.append(str(run_time*1000))
     wf.append(str(memory_consumed))
     print("M+N: " + str( len(s1) + len(s2) ))
-    f = open("./outputs/inefficient/" + output_file, 'w')
+    f = open(output_file, 'w')
     f.write('\n'.join(wf))
     f.close()
