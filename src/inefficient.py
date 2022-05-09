@@ -93,12 +93,12 @@ def Find_Alignment(Alignment_Costs, A, B):
 # Checking the running time and memory usage
 def call_inefficient_sequence_alignment( s1, s2, output_file ):
     start = time.time()
-    process = psutil.Process()
 
     Alignment_Costs = Alignment(s1, s2)
     wf = Find_Alignment(Alignment_Costs, s1, s2)
     end = time.time()
     run_time = end - start
+    process = psutil.Process()
     memory_info = process.memory_info()
     memory_consumed = int(memory_info.rss/1024)
 
