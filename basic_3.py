@@ -10,6 +10,7 @@ if __name__ == "__main__":
     else:
         input_file = sys.argv[1]
         output_file = sys.argv[2]
-        print( "Reading File: " + input_file )
+        print ("Input FIle: " + input_file)
+        print ("Output FIle: " + output_file)
         string1, string2 = read_input_file("./inputs/"+input_file)
         call_inefficient_sequence_alignment(string1, string2, output_file)
