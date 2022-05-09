@@ -1,7 +1,7 @@
 #Imports
 from re import S
 import time
-import tracemalloc
+import psutil
 
 
 #Declarations
@@ -93,16 +93,17 @@ def Find_Alignment(Alignment_Costs, A, B):
 # Checking the running time and memory usage
 def call_inefficient_sequence_alignment( s1, s2, testcase_number ):
     start = time.time()
-    tracemalloc.start(25)
+    process = psutil.Process()
+    memory_info = process.memory_info()
 
     Alignment_Costs = Alignment(s1, s2)
     wf = Find_Alignment(Alignment_Costs, s1, s2)
     end = time.time()
     run_time = end - start
-    size, peak = tracemalloc.get_traced_memory()
+    memory_consumed = int(memory_info.rss/1024)
 
-    wf.append(str(run_time))
-    wf.append(str(peak))
+    wf.append(str(run_time*1000))
+    wf.append(str(memory_consumed))
     print("M+N: " + str( len(s1) + len(s2) ))
     f = open("./outputs/inefficient/output_basic" + str(testcase_number) + ".txt", 'w')
     f.write('\n'.join(wf))
